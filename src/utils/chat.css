@@ -1,0 +1,135 @@
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #323232;
+    font-family: 'Segoe UI', sans-serif;
+    color: #000;
+}
+
+.initial-message-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.initial-message {
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.chat-bubble {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    max-width: 80%;
+}
+
+.chat-bubble.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.chat-bubble.assistant {
+    align-self: flex-start;
+}
+
+.avatar {
+    background-color: #e0e7ff;
+    color: #1e40af;
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.bubble-content {
+    background-color: #e0e0e0;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    white-space: pre-wrap;
+    line-height: 1.6;
+    word-wrap: break-word;
+    word-break: break-word;
+    font-size: 1rem;
+    color: #000;
+}
+
+.chat-bubble.user .bubble-content {
+    background-color: #575656;
+    color: #ffffff;
+}
+
+.chat-input-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #616161;
+    border-radius: 20px;
+    width: 60%;
+    margin: 0 auto 1rem auto;
+    gap: 1rem;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+    outline: none;
+    background: #ffffff;
+}
+
+.send-btn {
+    padding: 0.75rem 1.25rem;
+    background-color: #575656;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.send-btn:hover {
+    background-color: #000000;
+}
+
+.bubble-content ul {
+    padding-left: 1.25rem;
+    margin: 0.5rem 0;
+}
+
+.bubble-content li {
+    margin-bottom: 0.5rem;
+}
+
+.bubble-content strong {
+    font-weight: bold;
+}
+
+.bubble-content em {
+    font-style: italic;
+}
