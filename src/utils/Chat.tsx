@@ -8,23 +8,22 @@ const Chat: React.FC = () => {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  const [isThinking, setIsThinking] = useState(false);
+
   const handleSend = async () => {
     if (!input.trim()) return;
 
     const userMessage = { role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
+    setIsThinking(true);
 
     const botResponse = await fetchChatResponseFromGemini(input);
     const text = await botResponse.response.text();
 
-    // Format bullets for ReactMarkdown
-    const formattedText = text
-      .replace(/\n\s*\u2022/g, '\n-')      // convert bullet symbol to markdown list
-      .replace(/^\s*\u2022/gm, '-')         // handle beginning bullets
-      .replace(/\n(?=\w)/g, '\n\n');       // add spacing for better line separation
-
-    setMessages((prev) => [...prev, { role: 'assistant', content: formattedText }]);
+    const cleanedText = text.replace(/^•\s*/gm, '');
+    setMessages((prev) => [...prev, { role: 'assistant', content: cleanedText }]);
+    setIsThinking(false);
   };
 
   useEffect(() => {
@@ -48,8 +47,24 @@ const Chat: React.FC = () => {
             </div>
           ))
         )}
+
+        {/* Bot typing loader */}
+        {isThinking && (
+          <div className="chat-bubble assistant">
+            <div className="avatar">🤖</div>
+            <div className="bubble-content">
+              <div className="typing-loader">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div ref={messagesEndRef} />
       </div>
+
 
       <div className="chat-input-area">
         <textarea

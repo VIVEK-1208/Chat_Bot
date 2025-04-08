@@ -1,11 +1,18 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
 
 .chat-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: #323232;
+    background: linear-gradient(to bottom right, #2c3e50, #4ca1af);
     font-family: 'Segoe UI', sans-serif;
-    color: #000;
+    color: #fff;
+    overflow: hidden;
 }
 
 .initial-message-container {
@@ -48,7 +55,7 @@
 }
 
 .avatar {
-    background-color: #e0e7ff;
+    background-color: #ffffff;
     color: #1e40af;
     border-radius: 50%;
     padding: 0.5rem;
@@ -62,8 +69,8 @@
 }
 
 .bubble-content {
-    background-color: #e0e0e0;
-    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.25rem 1.5rem;
     border-radius: 1rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     white-space: pre-wrap;
@@ -71,65 +78,122 @@
     word-wrap: break-word;
     word-break: break-word;
     font-size: 1rem;
-    color: #000;
+    color: #fcfcfc;
+}
+.bubble-content ul {
+    list-style-type: disc;
+    margin: 0.75rem 0 0.75rem 1.5rem;
+    padding-left: 1.2rem;
+}
+
+.bubble-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
 }
 
 .chat-bubble.user .bubble-content {
-    background-color: #575656;
+    background-color: rgba(87, 87, 87, 0.7);
     color: #ffffff;
 }
 
 .chat-input-area {
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #616161;
-    border-radius: 20px;
-    width: 60%;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.5rem;
+    border-radius: 2rem;
+    width: 95%;
+    max-width: 800px;
     margin: 0 auto 1rem auto;
-    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    bottom: 1rem;
+    flex-shrink: 0;
 }
 
 .chat-input {
     flex: 1;
-    padding: 0.75rem 1rem;
-    border-radius: 1rem;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    resize: none;
-    outline: none;
-    background: #ffffff;
-}
-
-.send-btn {
-    padding: 0.75rem 1.25rem;
-    background-color: #575656;
-    color: white;
     border: none;
-    border-radius: 1rem;
-    cursor: pointer;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 1.5rem;
+    outline: none;
+    resize: none;
+}
+.chat-input::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+.send-btn {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    margin-left: 1rem;
+    border-radius: 1.5rem;
     font-weight: bold;
+    cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .send-btn:hover {
-    background-color: #000000;
+    background: linear-gradient(135deg, #0072ff, #005ce6);
 }
 
-.bubble-content ul {
-    padding-left: 1.25rem;
-    margin: 0.5rem 0;
+
+/* Loader */
+.typing-loader {
+    display: flex;
+    gap: 5px;
+    padding: 0 1rem;
 }
 
-.bubble-content li {
-    margin-bottom: 0.5rem;
+.typing-loader span {
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    animation: blink 1.4s infinite both;
 }
 
-.bubble-content strong {
-    font-weight: bold;
+.typing-loader span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.typing-loader span:nth-child(3) {
+    animation-delay: 0.4s;
 }
 
-.bubble-content em {
-    font-style: italic;
+@keyframes blink {
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+.chat-bubble.assistant .bubble-content {
+    max-width: 90%;
+}
+
+/* Custom Scrollbar Styling */
+.chat-messages::-webkit-scrollbar {
+    width: 7px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, #2c3e50, #4ca1af); /* Dark track to blend with chat background */
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #000000;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6fbadf, #3e3e3e);
 }

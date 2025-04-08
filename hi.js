@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({apiKey:"process.env.VITE_OPENAI4O_API_KEY"});
+const openai = new OpenAI({apiKey:import.meta.env.VITE_OPENAI4O_API_KEY});
 
 async function main() {
     const stream = await openai.chat.completions.create({
