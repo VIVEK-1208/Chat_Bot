@@ -15,6 +15,13 @@ An AI-powered chatbot built using **React + TypeScript + Vite**, integrated with
 
 ---
 
+## 🌐 Live Demo
+
+🚀 **[Click here to try the chatbot!](https://aichat-assistant.netlify.app/)**  
+*(Deployed with Netlify — replace this link with your own)*
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: React + TypeScript
@@ -40,7 +47,7 @@ To get an API key, visit: [Google AI Studio](https://makersuite.google.com/app) 
 
 ## 1. Clone the repository
 ```
-git clone https://github.com/yourusername/gemini-chatbot.git
+git clone https://github.com/VIVEK-1208/Chat_Bot.git
 cd gemini-chatbot
 ```
 
@@ -56,7 +63,7 @@ npm install react-markdown
 npm run dev
 ```
 
-##🧠 Usage
+## 🧠 Usage
 Type your question in the input box.
 
 Press Enter or click Send.
@@ -64,5 +71,5 @@ Press Enter or click Send.
 The chatbot will reply using Gemini.
 
 
-##🤝 Contributing
+## 🤝 Contributing
 Pull requests are welcome! If you'd like to contribute, please fork the repo and submit a PR.
