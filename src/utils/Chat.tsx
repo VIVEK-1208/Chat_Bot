@@ -13,18 +13,53 @@ const Chat: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { role: 'user', content: input };
+    const userMessage = { role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+
+    setInput("");
     setIsThinking(true);
 
-    const botResponse = await fetchChatResponseFromGemini(input);
-    const text = await botResponse.response.text();
+    try {
+      const botResponse = await fetchChatResponseFromGemini(input);
 
-    const cleanedText = text.replace(/^•\s*/gm, '');
-    setMessages((prev) => [...prev, { role: 'assistant', content: cleanedText }]);
-    setIsThinking(false);
+      if (botResponse?.response?.text) {
+        simulateStreaming(botResponse.response.text());
+      } else {
+        setMessages((prev) => [...prev, { role: "assistant", content: "Sorry, I couldn't understand that." }]);
+      }
+    } catch (error) {
+      setMessages((prev) => [...prev, { role: "assistant", content: "Something went wrong. Please try again." }]);
+    } finally {
+      setIsThinking(false);
+    }
   };
+
+  // Simulate word-by-word streaming effect
+  const simulateStreaming = (fullText: string) => {
+    let currentText = "";
+    const words = fullText.split(" ");
+    let index = 0;
+
+    const interval = setInterval(() => {
+      if (index < words.length) {
+        currentText += words[index] + " ";
+        setMessages((prev) => {
+          const lastMessage = prev[prev.length - 1];
+
+          if (lastMessage?.role === "assistant") {
+            return [...prev.slice(0, -1), { role: "assistant", content: currentText }];
+          } else {
+            return [...prev, { role: "assistant", content: currentText }];
+          }
+        });
+
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100); // Adjust speed for a smoother typing effect
+  };
+
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
