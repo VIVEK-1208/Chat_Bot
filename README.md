@@ -18,7 +18,7 @@ An AI-powered chatbot built using **React + TypeScript + Vite**, integrated with
 ## 🌐 Live Demo
 
 🚀 **[Click here to try the chatbot!](https://aichat-assistant.netlify.app/)**  
-*(Deployed with Netlify — replace this link with your own)*
+
 
 ---
 
