@@ -48,7 +48,7 @@ To get an API key, visit: [Google AI Studio](https://makersuite.google.com/app) 
 ## 1. Clone the repository
 ```
 git clone https://github.com/VIVEK-1208/Chat_Bot.git
-cd gemini-chatbot
+cd Chat_Bot
 ```
 
 ## 2. Install dependencies
